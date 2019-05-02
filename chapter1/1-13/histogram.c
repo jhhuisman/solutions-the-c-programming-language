@@ -2,13 +2,17 @@
 
 main()
 {
-	int c, prev, i, nc;
+	int c, prev, i, nc, nw;
 
-	nc = 0;
+	nc = nw = 0;
 
 	while ((c = getchar()) != EOF) {
 		if (c == ' ' || c == '\t' || c == '\n') {
 			if (prev != ' ' && prev != '\t' && prev != '\n') {
+				++nw;
+
+				printf("%4d ", nw);
+
 				for (i = 0; i < nc; ++i)
 					putchar('|');
 
@@ -18,7 +22,6 @@ main()
 		}
 		else {
 			++nc;
-			putchar(c);
 		}
 
 		prev = c;
