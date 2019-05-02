@@ -1,0 +1,3 @@
+I would test from the command line input.
+
+And with a file using cat file.txt | program
