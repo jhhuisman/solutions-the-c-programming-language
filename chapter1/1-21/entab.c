@@ -3,7 +3,7 @@
 #define MAXLINE 1000
 #define TABBLANKS 4
 
-int entab(int blankcount);
+void entab(int blankcount);
 
 int main()
 {
@@ -24,7 +24,7 @@ int main()
 	return 0;
 }
 
-int entab(int blankcount)
+void entab(int blankcount)
 {
 	while (blankcount >= 4) {
 		putchar('\t');
@@ -33,6 +33,4 @@ int entab(int blankcount)
 
 	for (blankcount; blankcount > 0; --blankcount)
 		putchar(' ');
-
-	return 0;
 }
