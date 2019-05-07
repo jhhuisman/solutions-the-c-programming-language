@@ -2,13 +2,31 @@
 #define EVEN 0
 #define UNEVEN 1
 
+#define OUTSIDE 0 /* Outside comment */
+#define INSIDE 1 /* Inside comment */
+
 int main()
 {
-	int c, parentheses, brackets, braces, single_quotes, double_quotes;
+	int c, prev, incomment, parentheses, brackets, braces, single_quotes, double_quotes;
 
 	parentheses = brackets = braces = single_quotes = double_quotes = EVEN;
 
+	incomment = OUTSIDE;
+
 	while ((c = getchar()) != EOF) {
+		if (c == '*' && prev == '/') {
+			incomment = INSIDE;
+		}
+
+		if (incomment == INSIDE && c == '/' && prev == '*') {
+			incomment = OUTSIDE;
+		}
+
+		if (incomment == INSIDE) {
+			prev = c;
+			continue;
+		}
+
 		if (c == '(')
 			parentheses = UNEVEN;
 
@@ -40,6 +58,8 @@ int main()
 			else
 				double_quotes = EVEN;
 		}
+
+		prev = c;
 	}
 
 	if (parentheses == UNEVEN)
