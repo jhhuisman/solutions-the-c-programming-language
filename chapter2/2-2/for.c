@@ -5,14 +5,10 @@ int main()
 {
 	int i, c, lim;
 
-	i = 0;
 	lim = LIMIT;
 	char s[LIMIT];
 
-	while ((c = getchar()) != EOF) {
-		if (c != '\n') {
-			for (i = 0; i < lim - 1; ++i)
-				s[i] = c;
-		}
-	}
+	/* Credit for akiracadet https://clc-wiki.net/wiki/K%26R2_solutions:Chapter_2:Exercise_2 */
+	for (i = 0; (i < lim -1) + ((c = getchar()) != '\n') + (c != EOF) == 3; ++i) 
+		s[i] = c;
 }
