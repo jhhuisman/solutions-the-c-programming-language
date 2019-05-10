@@ -45,10 +45,8 @@ void squeeze(char s1[], char s2[])
 			}
 		}
 
-		if (instring == NO) {
-			s1[j] = s1[i];
-			j++;
-		}
+		if (instring == NO)
+			s1[j++] = s1[i];
 
 		i++;
 	}
