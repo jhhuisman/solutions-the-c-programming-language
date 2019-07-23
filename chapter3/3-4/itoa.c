@@ -26,7 +26,7 @@ char *itoa(int n, char s[])
 
 	do {
 		s[i++] = abs(n % 10) + '0'; /* get next digit */
-	} while ((n /= 10) > 0); /* delete it */
+	} while ((n /= 10) != 0); /* delete it */
 
 	if (sign < 0)
 		s[i++] = '-';
