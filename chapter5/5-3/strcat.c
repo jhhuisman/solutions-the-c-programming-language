@@ -1,7 +1,6 @@
 #include <stdio.h>
 
 void strcatp(char *s, char *t);
-void strcat_kr(char s[], char t[]);
 
 int main()
 {
@@ -33,20 +32,5 @@ void strcatp(char *s, char *t)
 		s++;
 
 	while (*s++ = *t++)
-		;
-}
-
-/* strcat: concatenate t to the end of s; s must be big enough */
-void strcat_kr(char s[], char t[])
-{
-	int i, j;
-
-	i = j = 0;
-
-	/* Find end of s */
-	while (s[i] != '\0')
-		i++;
-
-	while ((s[i++] = t[j++]) != '\0')
 		;
 }
