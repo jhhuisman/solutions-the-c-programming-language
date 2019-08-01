@@ -1,3 +1,4 @@
+/* Answer by C Answer Book page 143 */
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -5,11 +6,14 @@
 #define MAXTOKEN 100
 
 enum { NAME, PARENS, BRACKETS };
+enum { NO, YES };
 
 int  gettoken(void);
-int  tokentype;          /* type of last token */
-char token[MAXTOKEN];    /* last token string */
-char out[1000];          /* output string */
+int  nexttoken(void);
+int  tokentype;       /* type of last token */
+char token[MAXTOKEN]; /* last token string */
+char out[1000];       /* output string */
+int  prevtoken;
 
 int main()
 {
@@ -23,7 +27,12 @@ int main()
 			if (type == PARENS || type == BRACKETS)
 				strcat(out, token);
 			else if (type == '*') {
-				sprintf(temp, "(*%s)", out);
+				if ((type == nexttoken()) == PARENS ||
+				     type == BRACKETS)
+					sprintf(temp, "(*%s)", out);
+				else
+					sprintf(temp, "*%s", out);
+
 				strcpy(out, temp);
 			} else if (type == NAME) {
 				sprintf(temp, "%s %s", token, out);
@@ -42,6 +51,11 @@ int gettoken(void) /* return next token */
 	int c, getch(void);
 	void ungetch(int);
 	char *p = token;
+
+	if (prevtoken == YES) {
+		prevtoken = NO;
+		return tokentype;
+	}
 
 	while ((c = getch()) == ' ' || c == '\t')
 		;
@@ -72,6 +86,16 @@ int gettoken(void) /* return next token */
 		return tokentype = NAME;
 	} else
 		return tokentype = c;
+}
+
+/* nexttoken: get the next token and push it back */
+int nexttoken(void)
+{
+	int type;
+
+	type = gettoken();
+	prevtoken = YES;
+	return type;
 }
 
 #define BUFSIZE 100
