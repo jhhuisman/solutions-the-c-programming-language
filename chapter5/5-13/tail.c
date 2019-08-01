@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define MAXLINES 5000 /* max #lines to be sorted */
+#define MAXLINES 5000
 
 char *lineptr[MAXLINES];
 
