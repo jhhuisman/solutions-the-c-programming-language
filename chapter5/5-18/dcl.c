@@ -44,6 +44,11 @@ int gettoken(void) /* return next token */
 	void ungetch(int);
 	char *p = token;
 
+	if (prevtoken == YES) {
+		prevtoken = NO;
+		return tokentype;
+	}
+
 	while ((c = getch()) == ' ' || c == '\t')
 		;
 
