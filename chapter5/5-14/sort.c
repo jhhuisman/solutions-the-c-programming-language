@@ -32,12 +32,6 @@ int main(int argc, char *argv[])
 				reverse = 1;
 			}
 
-	if (argc > 1 && strcmp(argv[1], "-n") == 0)
-		numeric = 1;
-
-	if (argc > 1 && strcmp(argv[1], "-r") == 0)
-		reverse = 1;
-
 	if ((nlines = readlines(lineptr, buffer, MAXLINES)) >= 0) {
 		qsort_kr((void **) lineptr, 0, nlines-1,
 			(int (*)(void*,void*))(numeric ? numcmp : strcmp));
