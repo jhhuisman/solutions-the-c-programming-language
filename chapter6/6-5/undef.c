@@ -23,12 +23,7 @@ int main()
 	struct nlist *np;
 
 	np = install("aa", "bb");
-
 	undef("aa");
-
-	printf("## %s\n", np->defn);
-	printf("## %p\n", np);
-	printf("## %p\n", np->next);
 
 	return 0;
 }
